@@ -1,7 +1,7 @@
 # github-user-created-new-rm1522
 
 ## Summary
-Show an aria-live alert
+Display the account age in whole years inside
 
 ## Setup
 1. Clone the repository.

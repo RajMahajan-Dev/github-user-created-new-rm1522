@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub User Creation Date</title>
+    <title>GitHub User Account Age</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
@@ -39,7 +39,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>GitHub User Creation Date</h1>
+        <h1>GitHub User Account Age</h1>
         <form id="github-user-1" onsubmit="fetchUser(event)">
             <div class="form-group">
                 <label for="username">GitHub Username</label>
@@ -49,7 +49,7 @@
                 <label for="token">Optional Token</label>
                 <input type="text" class="form-control" id="token">
             </div>
-            <button type="submit" class="btn btn-primary">Fetch Creation Date</button>
+            <button type="submit" class="btn btn-primary">Fetch Account Age</button>
         </form>
         <div id="github-created-at" class="result" style="display:none;"></div>
         <div id="live-alert" aria-live="polite" class="alert" style="display:none;"></div>
@@ -73,10 +73,11 @@
                     throw new Error('User not found or invalid token.');
                 }
                 const data = await response.json();
-                const createdAt = new Date(data.created_at).toISOString().split('T')[0];
-                resultDiv.innerHTML = `Account Creation Date: <strong>${createdAt} UTC</strong>`;
+                const createdAt = new Date(data.created_at);
+                const accountAge = new Date().getFullYear() - createdAt.getFullYear();
+                resultDiv.innerHTML = `Account Age: <strong>${accountAge} years</strong>`;
                 resultDiv.style.display = 'block';
-                alertDiv.innerHTML = `Successfully fetched creation date for user: ${username}`;
+                alertDiv.innerHTML = `Successfully fetched account age for user: ${username}`;
                 alertDiv.style.display = 'block';
             } catch (error) {
                 resultDiv.innerHTML = `Error: ${error.message}`;
