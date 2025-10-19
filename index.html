@@ -29,6 +29,12 @@
             border-radius: 5px;
             background-color: #e9ecef;
         }
+        .alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
@@ -46,6 +52,7 @@
             <button type="submit" class="btn btn-primary">Fetch Creation Date</button>
         </form>
         <div id="github-created-at" class="result" style="display:none;"></div>
+        <div id="live-alert" aria-live="polite" class="alert" style="display:none;"></div>
     </div>
     <script>
         async function fetchUser(event) {
@@ -54,8 +61,11 @@
             const token = document.getElementById('token').value;
             const url = `https://api.github.com/users/${username}${token ? `?access_token=${token}` : ''}`;
             const resultDiv = document.getElementById('github-created-at');
+            const alertDiv = document.getElementById('live-alert');
             resultDiv.style.display = 'none';
             resultDiv.innerHTML = '';
+            alertDiv.style.display = 'none';
+            alertDiv.innerHTML = '';
 
             try {
                 const response = await fetch(url);
@@ -66,9 +76,13 @@
                 const createdAt = new Date(data.created_at).toISOString().split('T')[0];
                 resultDiv.innerHTML = `Account Creation Date: <strong>${createdAt} UTC</strong>`;
                 resultDiv.style.display = 'block';
+                alertDiv.innerHTML = `Successfully fetched creation date for user: ${username}`;
+                alertDiv.style.display = 'block';
             } catch (error) {
                 resultDiv.innerHTML = `Error: ${error.message}`;
                 resultDiv.style.display = 'block';
+                alertDiv.innerHTML = `Error occurred: ${error.message}`;
+                alertDiv.style.display = 'block';
             }
         }
     </script>

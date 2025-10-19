@@ -1,7 +1,7 @@
 # github-user-created-new-rm1522
 
 ## Summary
-Publish a Bootstrap page with form id="github-user-${seed}" that fetches a GitHub username, optionally uses ?token=, and displays the account creation date in YYYY-MM-DD UTC inside #github-created-at.
+Show an aria-live alert
 
 ## Setup
 1. Clone the repository.
@@ -12,7 +12,7 @@ Publish a Bootstrap page with form id="github-user-${seed}" that fetches a GitHu
 - Update `index.html` to iterate quickly, then push changes to redeploy GitHub Pages.
 
 ## Code Explanation
-This project was generated automatically from the brief provided in Round 1. The `index.html` file contains a self-contained static experience. Supporting files such as the MIT license and README are managed programmatically to keep history clean.
+This project was generated automatically from the brief provided in Round 2. The `index.html` file contains a self-contained static experience. Supporting files such as the MIT license and README are managed programmatically to keep history clean.
 
 ## License
 Released under the MIT License. See `LICENSE` for details.
