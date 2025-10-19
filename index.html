@@ -55,6 +55,16 @@
         <div id="live-alert" aria-live="polite" class="alert" style="display:none;"></div>
     </div>
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const seed = '1'; // You can change this if needed
+            const cachedUser = localStorage.getItem(`github-user-${seed}`);
+            if (cachedUser) {
+                const { username, token } = JSON.parse(cachedUser);
+                document.getElementById('username').value = username;
+                document.getElementById('token').value = token;
+            }
+        });
+
         async function fetchUser(event) {
             event.preventDefault();
             const username = document.getElementById('username').value;
@@ -79,6 +89,8 @@
                 resultDiv.style.display = 'block';
                 alertDiv.innerHTML = `Successfully fetched account age for user: ${username}`;
                 alertDiv.style.display = 'block';
+
+                localStorage.setItem(`github-user-1`, JSON.stringify({ username, token }));
             } catch (error) {
                 resultDiv.innerHTML = `Error: ${error.message}`;
                 resultDiv.style.display = 'block';

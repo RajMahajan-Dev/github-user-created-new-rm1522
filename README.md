@@ -1,7 +1,7 @@
 # github-user-created-new-rm1522
 
 ## Summary
-Display the account age in whole years inside
+Cache the last successful lookup in localStorage under "github-user-${seed}" and repopulate the form on load.
 
 ## Setup
 1. Clone the repository.
